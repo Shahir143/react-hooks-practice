@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [details, setDetails] = useState({ counter: 0, name: "" });
+
+  function increaseCounter() {
+    setDetails((prev) => ({
+      ...prev,
+      counter: prev.counter + 1,
+    }));
+  }
+
+  function handleName(e) {
+    setDetails((prev) => ({
+      ...prev,
+      name: e.target.value,
+    }));
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" onChange={handleName} />
+      <h1>
+        {details.name} has Clicked {details.counter}
+      </h1>
+      <button onClick={increaseCounter}>Increase</button>
     </div>
   );
 }
