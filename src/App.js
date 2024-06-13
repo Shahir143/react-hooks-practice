@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
+  //! const [counter, setCounter] = useState(0);
+  // - const [name, setName] = useState();
   const [details, setDetails] = useState({ counter: 0, name: "" });
 
   function increaseCounter() {
@@ -14,7 +16,7 @@ function App() {
   function handleName(e) {
     setDetails((prev) => ({
       ...prev,
-      name: e.target.value,
+      name: e.target.value.,
     }));
   }
   return (
