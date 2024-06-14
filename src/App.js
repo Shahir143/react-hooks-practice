@@ -1,25 +1,24 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [toggle, setToggle] = useState(false);
+  const inputRef = useRef();
+  const [inputValue, setInputValue] = useState(null);
 
-  useEffect(() => {
-    console.log("useEffect");
-  }, [toggle]);
-
-  useLayoutEffect(() => {
-    console.log("useLayoutEffect");
-  }, [toggle]);
-
-  function HandleClick(event) {
-    event.preventDefault();
-    setToggle((prevToggle) => !prevToggle);
+  const result = useMemo(() => {
+    return inputValue * inputValue;
+  }, [inputValue]);
+  function calculate() {
+    const num = parseFloat(inputRef.current.value) || 0;
+    console.log("loop started");
+    setInputValue(num);
   }
+
   return (
     <div className="App">
-      {toggle && <h1>hello</h1>}
-      <button onClick={HandleClick}>Increase</button>
+      <input type="number" ref={inputRef} />
+      <h1>{result}</h1>
+      <button onClick={calculate}>Calculate</button>
     </div>
   );
 }
